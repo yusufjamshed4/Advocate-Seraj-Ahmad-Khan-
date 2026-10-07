@@ -14,8 +14,19 @@
     <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+   </style>
+
+  #bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.35;
+}
   
-    </style>
       
         :root {
             --bg-dark: #080808;
@@ -97,12 +108,8 @@
         updateCount();
     });
 </script>
-         </body>
-  
-          <canvas id="bg-canvas"></canvas>
-
+  <canvas id="bg-canvas"></canvas>
 <script>
-// Interactive Background Particle Wave Effect
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -120,9 +127,9 @@ class Particle {
     constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.8;
-        this.vy = (Math.random() - 0.5) * 0.8;
-        this.size = Math.random() * 2 + 1;
+        this.vx = (Math.random() - 0.5) * 0.6;
+        this.vy = (Math.random() - 0.5) * 0.6;
+        this.size = Math.random() * 1.5 + 0.8;
     }
     update() {
         this.x += this.vx;
@@ -131,20 +138,19 @@ class Particle {
         if (this.y < 0 || this.y > height) this.vy = -this.vy;
     }
     draw() {
-        ctx.fillStyle = 'rgba(212, 175, 55, 0.6)'; // Gold color theme matching lawyer design
+        ctx.fillStyle = 'rgba(212, 175, 55, 0.5)';
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
     }
 }
 
-for (let i = 0; i < 60; i++) {
+for (let i = 0; i < 50; i++) {
     particles.push(new Particle());
 }
 
 function animate() {
     ctx.clearRect(0, 0, width, height);
-    
     for (let i = 0; i < particles.length; i++) {
         particles[i].update();
         particles[i].draw();
@@ -154,9 +160,9 @@ function animate() {
             const dy = particles[i].y - particles[j].y;
             const dist = Math.sqrt(dx * dx + dy * dy);
             
-            if (dist < 120) {
-                ctx.strokeStyle = `rgba(212, 175, 55, ${0.2 * (1 - dist / 120)})`;
-                ctx.lineWidth = 0.8;
+            if (dist < 110) {
+                ctx.strokeStyle = `rgba(212, 175, 55, ${0.15 * (1 - dist / 110)})`;
+                ctx.lineWidth = 0.6;
                 ctx.beginPath();
                 ctx.moveTo(particles[i].x, particles[i].y);
                 ctx.lineTo(particles[j].x, particles[j].y);
@@ -167,11 +173,9 @@ function animate() {
     requestAnimationFrame(animate);
 }
 animate();
-
 </script>
-          
-      
-    <style>
+      </body>
+        
         /* Header */
         header {
             background: rgba(8, 8, 8, 0.95);
