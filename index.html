@@ -436,33 +436,125 @@
             font-size: 0.75rem;
             margin-top: 4px;
         }
+      
+        /* FAQ Accordion */
+.faq-item {
+    border: 1px solid rgba(201, 160, 75, 0.18);
+    border-radius: 8px;
+    margin-bottom: 14px;
+    overflow: hidden;
+}
 
-        /* FAQ Section */
-        .faq-section {
-            padding: 90px 0;
-            background: var(--bg-dark);
-            border-bottom: 1px solid var(--border-subtle);
-        }
+.faq-question {
+    width: 100%;
+    background: transparent;
+    color: #fff;
+    border: none;
+    padding: 22px;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .faq-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            margin-bottom: 12px;
-            border-radius: 6px;
-            padding: 18px;
-        }
+.faq-question::after {
+    content: '+';
+    color: var(--gold);
+    font-size: 24px;
+}
 
-        .faq-question {
-            color: var(--text-main);
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 6px;
-        }
+.faq-question.active::after {
+    content: '−';
+}
 
-        .faq-answer {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0 22px;
+    color: #aaa;
+    line-height: 1.7;
+}
+
+.faq-answer.show {
+    max-height: 300px;
+    padding-bottom: 22px;
+}
+     <div class="faq-item">
+    <button class="faq-question">
+        How can I solve a land dispute in Phoolpur?
+    </button>
+    <div class="faq-answer">
+        Land disputes can be effectively handled through title verification,
+        document review, legal advice and representation before the Phoolpur
+        Tehsil or District Court, depending on the matter.
+    </div>
+</div>
+
+<div class="faq-item">
+    <button class="faq-question">
+        What documents are needed for property registry?
+    </button>
+    <div class="faq-answer">
+        Important documents may include title deeds, identity documents,
+        tax receipts, previous registry documents and other property-related
+        records. The exact documents depend on the transaction.
+    </div>
+</div>
+
+<div class="faq-item">
+    <button class="faq-question">
+        How do I book a legal consultation?
+    </button>
+    <div class="faq-answer">
+        You can submit an enquiry through the website or contact Advocate
+        Seraj Ahmad Khan for a consultation regarding your legal matter.
+    </div>
+</div>
+
+<div class="faq-item">
+    <button class="faq-question">
+        Does Advocate Seraj Ahmad Khan handle property disputes?
+    </button>
+    <div class="faq-answer">
+        Yes. The website provides information about legal assistance relating
+        to property disputes, land matters, title verification, registry and
+        revenue-related matters.
+    </div>
+</div>
+
+<div class="faq-item">
+    <button class="faq-question">
+        Does he provide legal services in Phoolpur Tehsil?
+    </button>
+    <div class="faq-answer">
+        Advocate Seraj Ahmad Khan is presented on this website as a property
+        and revenue lawyer serving Phoolpur Tehsil, Azamgarh.
+    </div>
+</div>
+
+<div class="faq-item">
+    <button class="faq-question">
+        Can I get help with land and revenue matters in Azamgarh?
+    </button>
+    <div class="faq-answer">
+        The website provides information about legal consultation concerning
+        land, property, revenue and related legal matters in the Azamgarh area.
+    </div>
+</div>
+    <script>
+document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const answer = button.nextElementSibling;
+
+        button.classList.toggle('active');
+        answer.classList.toggle('show');
+    });
+});
+</script>
 
         /* Location Section */
         .location-section {
