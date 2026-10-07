@@ -595,14 +595,16 @@ document.querySelectorAll('.faq-question').forEach(button => {
         The website provides information about legal consultation concerning
         land, property, revenue and related legal matters in the Azamgarh area.
     </div>
-document.querySelectorAll('.faq-question').forEach(button => {
-    button.addEventListener('click', () => {
-        const answer = button.nextElementSibling;
-
-        button.classList.toggle('active');
-        answer.classList.toggle('show');
+      <script>
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const answer = button.nextElementSibling;
+            button.classList.toggle('active');
+            answer.classList.toggle('show');
+        });
     });
-});
+</script>
+      
     
         /* Location Section */
         .location-section {
