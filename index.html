@@ -1169,5 +1169,44 @@
         }
         animate();
     </script>
+    <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".counter");
+    let animated = false;
+
+    const runCounters = () => {
+      counters.forEach(counter => {
+        const target = +counter.getAttribute("data-target");
+        let count = 0;
+        const speed = target / 50; 
+
+        const updateCount = () => {
+          count += speed;
+          if (count < target) {
+            counter.innerText = Math.ceil(count) + (counter.getAttribute("data-target") === "7" ? "+" : (target === 1000 ? "+" : "%"));
+            setTimeout(updateCount, 30);
+          } else {
+            counter.innerText = target + (target === 7 ? "+" : (target === 1000 ? "+" : "%"));
+          }
+        };
+        updateCount();
+      });
+    };
+
+    const statsSection = document.querySelector(".stats-section");
+    if (statsSection) {
+      const observer = new IntersectionObserver((entries, observer) => {
+        if (entries[0].isIntersecting && !animated) {
+          runCounters();
+          animated = true;
+          observer.unobserve(statsSection);
+        }
+      }, { threshold: 0.5 });
+
+      observer.observe(statsSection);
+    }
+  });
+    </script>
+    
 </body>
 </html>
