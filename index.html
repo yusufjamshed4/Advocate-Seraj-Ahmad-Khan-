@@ -53,40 +53,48 @@
             margin: 0 auto;
             padding: 0 24px;
         }
-      
-<div class="stats-grid">
-  <div class="stat-card">
-    <h3><span class="counter" data-target="7">0</span>+</h3>
-    <p>Years Exp.</p>
-  </div>
-  <div class="stat-card">
-    <h3><span class="counter" data-target="1000">0</span>+</h3>
-    <p>Cases Handled</p>
-  </div>
-  <div class="stat-card">
-    <h3><span class="counter" data-target="100">0</span>%</h3>
-    <p>Trusted</p>
-  </div>
+      <div class="stats-grid">
+    <div class="stat-card">
+        <h3 class="counter" data-target="7">0</h3>
+        <p>Years Exp.</p>
+    </div>
+    <div class="stat-card">
+        <h3 class="counter" data-target="1000">0</h3>
+        <p>Cases Handled</p>
+    </div>
+    <div class="stat-card">
+        <h3 class="counter" data-target="100">0</h3>
+        <p>Trusted</p>
+    </div>
 </div>
-  
- <script>
-  // Counter Animation Logic
-  const counters = document.querySelectorAll('.counter');
-  counters.forEach(counter => {
-    const updateCount = () => {
-      const target = +counter.getAttribute('data-target');
-      const count = +counter.innerText;
-      const increment = target / 150;
 
-      if (count < target) {
-        counter.innerText = Math.ceil(count + increment);
-        setTimeout(updateCount, 20);
-      } else {
-        counter.innerText = target;
-      }
-    };
-    updateCount();
-  });
+<script>
+    // Counter Animation Logic
+    const counters = document.querySelectorAll('.counter');
+
+    counters.forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            
+            const increment = target / 100; 
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(updateCount, 20);
+            } else {
+                if (target === 100) {
+                    counter.innerText = target + '%';
+                } else if (target === 7 || target === 1000) {
+                    counter.innerText = target + '+';
+                } else {
+                    counter.innerText = target;
+                }
+            }
+        };
+
+        updateCount();
+    });
 </script>
          </body>
       
