@@ -80,8 +80,6 @@
       const updateCount = () => {
         const target = +counter.getAttribute('data-target');
         const count = +counter.innerText;
-        
-        // Speed control: 2-3 second mein animation complete karne ke liye
         const increment = target / 150;
 
         if (count < target) {
@@ -92,19 +90,11 @@
         }
       };
 
-      // Intersection Observer taaki scroll karte hi counter start ho
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            updateCount();
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.3 });
-
-      observer.observe(counter);
+      updateCount();
     });
   });
+</script>
+
       </script>
         </body>
       
