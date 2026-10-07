@@ -101,27 +101,43 @@
         }
     }
       </style>
-      <div class="modern-stats-container">
-    <div class="modern-stat-card">
-        <div class="modern-stat-number">
-            <span class="counter" data-target="7">0</span>+
-        </div>
-        <div class="modern-stat-label">Years Exp.</div>
-    </div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll('.stats-grid .counter, .stat-card span, .counter');
+    
+    counters.forEach(counter => {
+      const updateCount = () => {
+        // Target value (jaise 7, 1000, 100)
+        const target = +counter.getAttribute('data-target') || +counter.innerText;
+        const count = +counter.innerText;
+        
+        // Speed control: 2-3 second mein animation khatam karne ke liye increment chota rakha hai
+        const speed = 200; // Jitna bada number hoga, utna dheere chalega
+        const inc = target / speed;
 
-    <div class="modern-stat-card">
-        <div class="modern-stat-number">
-            <span class="counter" data-target="1000">0</span>+
-        </div>
-        <div class="modern-stat-label">Cases Handled</div>
-    </div>
+        if (count < target) {
+          counter.innerText = Math.ceil(count + inc);
+          setTimeout(updateCount, 15); // Har 15 millisecond baad update hoga
+        } else {
+          counter.innerText = target;
+        }
+      };
 
-    <div class="modern-stat-card">
-        <div class="modern-stat-number">
-            <span class="counter" data-target="100">0</span>%
-        </div>
-        <div class="modern-stat-label">Trusted</div>
-    </div>
+      // Jab counter screen par dikhega tabhi chalega
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            updateCount();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      observer.observe(counter);
+    });
+  });
+</script>
+  
         </body>
       
   
