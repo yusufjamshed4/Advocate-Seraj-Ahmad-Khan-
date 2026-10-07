@@ -436,6 +436,16 @@
             font-size: 0.75rem;
             margin-top: 4px;
         }
+      <script>
+document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const answer = button.nextElementSibling;
+
+        button.classList.toggle('active');
+        answer.classList.toggle('show');
+    });
+});
+</script>
       
         /* FAQ Accordion */
 .faq-item {
