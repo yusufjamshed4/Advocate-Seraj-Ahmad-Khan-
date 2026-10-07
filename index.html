@@ -70,32 +70,27 @@
 </div>
   
 
-   
-  
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const counters = document.querySelectorAll('.counter');
-    
-    counters.forEach(counter => {
-      const updateCount = () => {
-        const target = +counter.getAttribute('data-target');
-        const count = +counter.innerText;
-        const increment = target / 150;
+   <script>
+  // Counter Animation Logic
+  const counters = document.querySelectorAll('.counter');
+  counters.forEach(counter => {
+    const updateCount = () => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+      const increment = target / 150;
 
-        if (count < target) {
-          counter.innerText = Math.ceil(count + increment);
-          setTimeout(updateCount, 20);
-        } else {
-          counter.innerText = target;
-        }
-      };
-
-      updateCount();
-    });
+      if (count < target) {
+        counter.innerText = Math.ceil(count + increment);
+        setTimeout(updateCount, 20);
+      } else {
+        counter.innerText = target;
+      }
+    };
+    updateCount();
   });
 </script>
+      
 
-      </script>
         </body>
       
   
@@ -596,14 +591,15 @@ document.querySelectorAll('.faq-question').forEach(button => {
         land, property, revenue and related legal matters in the Azamgarh area.
     </div>
       <script>
-    document.querySelectorAll('.faq-question').forEach(button => {
-        button.addEventListener('click', () => {
-            const answer = button.nextElementSibling;
-            button.classList.toggle('active');
-            answer.classList.toggle('show');
-        });
+document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const answer = button.nextElementSibling;
+        button.classList.toggle('active');
+        answer.classList.toggle('show');
     });
+});
 </script>
+
       
     
         /* Location Section */
