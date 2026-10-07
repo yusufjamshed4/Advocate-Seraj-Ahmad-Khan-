@@ -117,7 +117,28 @@
 </div>
   
 
-      // Jab counter screen par dikhega tabhi chalega
+   
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll('.counter');
+    
+    counters.forEach(counter => {
+      const updateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        
+        // Speed control: 2-3 second mein animation complete karne ke liye
+        const increment = target / 150;
+
+        if (count < target) {
+          counter.innerText = Math.ceil(count + increment);
+          setTimeout(updateCount, 20);
+        } else {
+          counter.innerText = target;
+        }
+      };
+
+      // Intersection Observer taaki scroll karte hi counter start ho
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -125,12 +146,12 @@
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.5 });
+      }, { threshold: 0.3 });
 
       observer.observe(counter);
     });
   });
-</script>
+      </script>
   
         </body>
       
