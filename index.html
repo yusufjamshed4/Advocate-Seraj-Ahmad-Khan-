@@ -101,27 +101,21 @@
         }
     }
       </style>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const counters = document.querySelectorAll('.stats-grid .counter, .stat-card span, .counter');
-    
-    counters.forEach(counter => {
-      const updateCount = () => {
-        // Target value (jaise 7, 1000, 100)
-        const target = +counter.getAttribute('data-target') || +counter.innerText;
-        const count = +counter.innerText;
-        
-        // Speed control: 2-3 second mein animation khatam karne ke liye increment chota rakha hai
-        const speed = 200; // Jitna bada number hoga, utna dheere chalega
-        const inc = target / speed;
-
-        if (count < target) {
-          counter.innerText = Math.ceil(count + inc);
-          setTimeout(updateCount, 15); // Har 15 millisecond baad update hoga
-        } else {
-          counter.innerText = target;
-        }
-      };
+<div class="stats-grid">
+  <div class="stat-card">
+    <h3><span class="counter" data-target="7">0</span>+</h3>
+    <p>Years Exp.</p>
+  </div>
+  <div class="stat-card">
+    <h3><span class="counter" data-target="1000">0</span>+</h3>
+    <p>Cases Handled</p>
+  </div>
+  <div class="stat-card">
+    <h3><span class="counter" data-target="100">0</span>%</h3>
+    <p>Trusted</p>
+  </div>
+</div>
+  
 
       // Jab counter screen par dikhega tabhi chalega
       const observer = new IntersectionObserver((entries, observer) => {
