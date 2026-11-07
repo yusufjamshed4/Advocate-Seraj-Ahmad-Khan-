@@ -911,6 +911,65 @@
             </div>
         </div>
     </section>
+    <!-- Review Button Section -->
+<div class="container" style="text-align: center; margin: 30px 0;">
+  <button id="openReviewModal" style="background: var(--text-gold, #d4af37); color: #000; padding: 12px 28px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">+ Apna Review Dein</button>
+</div>
+
+<!-- Review Modal Box -->
+<div id="reviewModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center;">
+  <div style="background: #1a1a1a; padding: 30px; border-radius: 10px; width: 90%; max-width: 450px; color: #fff; position: relative; border: 1px solid var(--text-gold, #d4af37); box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+    <span id="closeModal" style="position: absolute; top: 12px; right: 18px; font-size: 26px; cursor: pointer; color: var(--text-gold, #d4af37);">&times;</span>
+    <h3 style="margin-top: 0; margin-bottom: 20px; color: var(--text-gold, #d4af37); text-align: center; font-family: inherit;">Share Your Experience</h3>
+    
+    <form id="clientReviewForm">
+      <div style="margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 6px; font-size: 0.9rem; color: #ccc;">Aapka Naam:</label>
+        <input type="text" id="reviewName" required placeholder="e.g. Rajesh Kumar" style="width: 100%; padding: 10px; background: #2a2a2a; border: 1px solid #444; color: #fff; border-radius: 5px; outline: none;">
+      </div>
+
+      <div style="margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 6px; font-size: 0.9rem; color: #ccc;">Rating:</label>
+        <select id="reviewRating" style="width: 100%; padding: 10px; background: #2a2a2a; border: 1px solid #444; color: #fff; border-radius: 5px; outline: none;">
+          <option value="5">⭐⭐⭐⭐⭐ (5 / 5 Stars)</option>
+          <option value="4">⭐⭐⭐⭐ (4 / 5 Stars)</option>
+          <option value="3">⭐⭐⭐ (3 / 5 Stars)</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; margin-bottom: 6px; font-size: 0.9rem; color: #ccc;">Aapka Review / Message:</label>
+        <textarea id="reviewMessage" rows="4" required placeholder="Write your review here..." style="width: 100%; padding: 10px; background: #2a2a2a; border: 1px solid #444; color: #fff; border-radius: 5px; outline: none; resize: vertical;"></textarea>
+      </div>
+
+      <button type="submit" style="width: 100%; background: var(--text-gold, #d4af37); color: #000; padding: 12px; border: none; font-weight: bold; border-radius: 5px; cursor: pointer; font-size: 1rem;">Submit Review</button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal & Form JavaScript -->
+<script>
+  const modal = document.getElementById("reviewModal");
+  const btn = document.getElementById("openReviewModal");
+  const span = document.getElementById("closeModal");
+
+  btn.onclick = function() { modal.style.display = "flex"; }
+  span.onclick = function() { modal.style.display = "none"; }
+  window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; } }
+
+  document.getElementById("clientReviewForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("reviewName").value;
+    const rating = document.getElementById("reviewRating").value;
+    const message = document.getElementById("reviewMessage").value;
+
+    // Yahan aap apna backend/Firebase ya WhatsApp integration laga sakte hain
+    alert("Shukriya " + name + "! Aapka review safalpurvak mil gaya hai.");
+    modal.style.display = "none";
+    this.reset();
+  });
+</script>
+    
 
     <div class="container"><div class="gold-divider"></div></div>
 
